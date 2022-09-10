@@ -25,3 +25,16 @@ func TestCommentInsert(t *testing.T) {
 
 	fmt.Println(result)
 }
+
+func TestFindById(t *testing.T) {
+	commentRepository := NewCommentRepository(golang_database_mysql.GetConnection())
+
+	ctx := context.Background()
+	coment, err := commentRepository.FindById(ctx, 12)
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println(coment)
+
+}

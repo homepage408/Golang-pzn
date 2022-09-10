@@ -4,6 +4,7 @@ import (
 	"context"
 	"database/sql"
 	"errors"
+	"fmt"
 	"golang-database-mysql/entity"
 	"strconv"
 )
@@ -36,7 +37,9 @@ func (repository *commentRepositoryImpl) Insert(ctx context.Context, comment ent
 }
 
 func (repository *commentRepositoryImpl) FindById(ctx context.Context, id int32) (entity.Comment, error) {
-	script := "SELECT id, name,comment FROM comments WHERE id = ? LIMIT = 1"
+	script := "SELECT id, email ,comment FROM comments WHERE id = ? LIMIT 1"
+
+	fmt.Println(script)
 	rows, err := repository.DB.QueryContext(ctx, script, id)
 	comment := entity.Comment{}
 	if err != nil {
