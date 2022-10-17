@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/julienschmidt/httprouter"
@@ -8,6 +9,9 @@ import (
 
 func main() {
 	router := httprouter.New()
+	router.GET("/", func(w http.ResponseWriter, r *http.Request, params httprouter.Params) {
+		fmt.Fprintf(w, "Hello HttpRouter")
+	})
 
 	server := http.Server{
 		Handler: router,
