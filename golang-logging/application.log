@@ -1,0 +1,12 @@
+time="2022-10-23T23:19:12+07:00" level=info msg="Hello world!"
+time="2022-10-23T23:19:12+07:00" level=warning msg="Hello world!"
+time="2022-10-23T23:19:12+07:00" level=error msg="Hello world!"
+time="2022-10-23T23:21:44+07:00" level=info msg="Hello world!"
+time="2022-10-23T23:21:44+07:00" level=warning msg="Hello world!"
+time="2022-10-23T23:21:44+07:00" level=error msg="Hello world!"
+time="2022-10-23T23:22:49+07:00" level=info msg="HELLOO PAKE FIELD" animal=HAHAH
+time="2022-10-23T23:22:49+07:00" level=info msg="Hello world!"
+time="2022-10-23T23:22:49+07:00" level=warning msg="Hello world!"
+time="2022-10-23T23:22:49+07:00" level=error msg="Hello world!"
+{"level":"info","msg":"Testing formater","time":"2022-10-23T23:25:07+07:00"}
+{"level":"info","msg":"Testing formater","time":"2022-10-23T23:26:10+07:00"}
