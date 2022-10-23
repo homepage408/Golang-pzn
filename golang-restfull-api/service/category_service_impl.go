@@ -3,6 +3,7 @@ package service
 import (
 	"context"
 	"database/sql"
+	"golang-restfull-api/exception"
 	"golang-restfull-api/helper"
 	"golang-restfull-api/model/domain"
 	"golang-restfull-api/model/web"
@@ -50,7 +51,9 @@ func (service *CategoryServiceImpl) Update(ctx context.Context, req web.Category
 	defer helper.CommitOrRollback(tx)
 
 	category, err := service.CategoryRepository.FindById(ctx, tx, req.Id)
-	helper.PanicIfError(err)
+	if err != nil {
+		panic(exception.NewNotFoundError(err.Error()))
+	}
 
 	category.Name = req.Name
 	category = service.CategoryRepository.Update(ctx, tx, category)
@@ -62,9 +65,11 @@ func (service *CategoryServiceImpl) Delete(ctx context.Context, categoryId int) 
 	defer helper.CommitOrRollback(tx)
 
 	category, err := service.CategoryRepository.FindById(ctx, tx, categoryId)
-	helper.PanicIfError(err)
+	if err != nil {
+		panic(exception.NewNotFoundError(err.Error()))
+	}
 
-	service.CategoryRepository.Update(ctx, tx, category)
+	service.CategoryRepository.Delete(ctx, tx, category)
 }
 func (service *CategoryServiceImpl) FindById(ctx context.Context, categoryId int) web.CategoryResponse {
 	tx, err := service.DB.Begin()
@@ -72,7 +77,9 @@ func (service *CategoryServiceImpl) FindById(ctx context.Context, categoryId int
 	defer helper.CommitOrRollback(tx)
 
 	category, err := service.CategoryRepository.FindById(ctx, tx, categoryId)
-	helper.PanicIfError(err)
+	if err != nil {
+		panic(exception.NewNotFoundError(err.Error()))
+	}
 
 	return helper.ToCategoryResponse(category)
 }
